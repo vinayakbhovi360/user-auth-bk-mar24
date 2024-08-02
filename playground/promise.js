@@ -1,13 +1,13 @@
-function generateSalt () {
-    return new Promise ((resolve,reject) => {
+function generateSalt() {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
             const salt = "asdfsdfadfasdfsdfasdfasdfasdfasdf"
-            if(true){
+            if (false) {
                 resolve(salt)
-            }else{
+            } else {
                 reject(new Error('something went wrong'))
             }
-        },1000)
+        }, 1000)
 
     })
 }
@@ -20,5 +20,11 @@ generateSalt()
         console.log(err.message)
     })
 
-const salt = await generateSalt()
-console.log(salt)
+
+try {
+    const salt = await generateSalt()
+    console.log(salt)
+
+}catch(err){
+    console.log(err.message)
+}
