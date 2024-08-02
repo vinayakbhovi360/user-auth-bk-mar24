@@ -2,6 +2,8 @@
 // git commit -m 'user validation schema'
 // git push -u origin main
 
+import User from "../models/user-model.js"
+
 
 export const userRegisterSchema = {
     email : {
@@ -16,6 +18,19 @@ export const userRegisterSchema = {
         },
         trim:true,
         normalizeEmail: true,
+        custom : {
+            options : async function (value) {
+                try{
+                    const user = await User.findOne({email : value})
+                    if(user){
+                        throw new Error ("Email already taken")
+                    }
+                }catch(err) {
+                    throw new Error(err.message)
+                }
+                return true
+            }
+        }
 
     },
     password : {
