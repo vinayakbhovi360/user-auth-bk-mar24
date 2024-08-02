@@ -23,3 +23,9 @@ try {
     RuntimeError
 
 */
+
+// axios.get()
+//     .then((response) => {
+//         console.log(response.data)
+//     })
+// const response = await axios.get()
