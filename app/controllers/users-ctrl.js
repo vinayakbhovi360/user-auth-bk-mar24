@@ -43,11 +43,11 @@ usersCtrl.login = async (req,res) => {
     try{
         const user = await User.findOne({email:email})
         if(!user) {
-            return res.status(404).json({errors : "invalid email/password"})
+            return res.status(401).json({errors : "invalid email/password"})
         }
         const isValid = await bcryptjs.compare(password,user.password)
         if(!isValid){
-            return res.status(404).json({errors : "invalid email/password"})
+            return res.status(401).json({errors : "invalid email/password"})
         }
         const tokenData = {userId : user._id}
         const token = jwt.sign(tokenData,process.env.JWT_SECRET,{expiresIn:'7d'})
