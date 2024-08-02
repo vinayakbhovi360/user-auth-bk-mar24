@@ -1,3 +1,7 @@
+// git add .              
+// git commit -m 'user-model'
+// git push origin main  
+
 import { Schema,model } from "mongoose";
 
 const userSchema = new Schema ({
