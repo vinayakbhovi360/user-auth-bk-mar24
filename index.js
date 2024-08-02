@@ -23,6 +23,7 @@ import configureDB from "./config/db.js"
 import usersCtrl from "./app/controllers/users-ctrl.js"
 import { checkSchema } from "express-validator"
 import { userLoginSchema, userRegisterSchema } from "./app/validations/user-validation-schema.js"
+import authenticateUser from "./app/middlewares/authenticate.js"
 const port = process.env.PORT || 3050
 const app = express()
 configureDB()
@@ -35,6 +36,10 @@ app.use(cors())
 app.post("/api/users/register",checkSchema(userRegisterSchema),usersCtrl.register)
 
 app.post("/api/users/login",checkSchema(userLoginSchema),usersCtrl.login)
+
+app.get("/api/users/account",authenticateUser,usersCtrl.account)
+
+
 
 app.listen(port,()=> {
     console.log("Server running on port" ,port)

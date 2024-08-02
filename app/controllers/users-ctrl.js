@@ -54,10 +54,29 @@ usersCtrl.login = async (req,res) => {
         res.status(200).json({token : token})
 
     }catch(err){
+        console.log(err)
+        res.status(500).json({errors : "something went Wrong"})
 
     }
 
 }
+
+usersCtrl.account = async (req,res) => {
+    //verifying token
+    //send the data
+    try{
+        const user = await User.findById(req.userId)
+        res.status(200).json(user)
+
+    }catch(err){
+        console.log(err)
+        res.status(500).json({errors : "something went Wrong"})
+    }
+}
+
+
+
+
 
 
 
