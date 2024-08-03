@@ -43,6 +43,7 @@ app.get('/api/notes',authenticateUser,notesCtrl.list)
 app.post('/api/notes',authenticateUser,notesCtrl.create)
 app.get('/api/notes/:id',authenticateUser,notesCtrl.show)
 app.put("/api/notes/:id",authenticateUser,notesCtrl.update)
+app.delete("/api/notes/:id",authenticateUser,notesCtrl.delete)
 
 app.listen(port,()=> {
     console.log("Server running on port" ,port)

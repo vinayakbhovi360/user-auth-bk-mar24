@@ -67,10 +67,11 @@ notesCtrl.update = async(req,res) => {
 
 notesCtrl.delete = async (req,res) => {
     try{
-        const id = res.params.id
-        const note = await Notes.findOneAndDelete({_id:id,user:req.userId})
+        const id = req.params.id
+
+        const note = await Note.findOneAndDelete({_id:id,user:req.userId})
         if(!note){
-            return res.status(404).json({})
+            return res.status(400).json({})
         }
         res.json(note)
 
